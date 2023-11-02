@@ -4,8 +4,8 @@
     $request = trim($request, '/');
     
     if (empty($request)) {
-        include_once("public/home.php");
+        require_once("public/home.php");
     } else {
-        include_once("routes/router.php");
+        require_once("routes/router.php");
     }
 ?>

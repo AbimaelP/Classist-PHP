@@ -1,5 +1,5 @@
 <?php
-include_once "./app/config/model.php";
+require_once "./app/config/model.php";
 
 class Alert extends Model {
     //protected $database = 'users';

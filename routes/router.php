@@ -1,5 +1,5 @@
 <?php
-include_once("config.php");
+require_once("config.php");
 
-route('/test','test',);
-route('/test2','test2',);
+route('/register-alarm','AlarmController','index');
+route('/register-equipment','EquipmentController','index');
