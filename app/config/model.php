@@ -9,7 +9,25 @@ class Model {
         $this->database = $database;
     }
 
-    public function search($search, $select = '*'){
+    //
+    public function all()
+    {
+        $qr = query("SELECT * FROM ".$this->database."");
+
+        $response = [];
+        while($obj = mysqli_fetch_object($qr)){
+            $response[] = $obj;
+        }
+
+        if($response)
+            return $response;
+        else
+            return $GLOBALS['db']->error;
+    }
+
+    //
+    public function search($search, $select = '*')
+    {
         $key = array_keys($search)[0];
         $value = '"%' . implode('%', array_values($search)) .'%"';
 
@@ -25,7 +43,9 @@ class Model {
             return $GLOBALS['db']->error;
     }
 
-    public function create($insert){
+    //
+    public function create($insert)
+    {
         $keys = implode(',',array_keys($insert));
         $values = '"' . implode('","', array_values($insert)) . '"';
         
@@ -38,9 +58,29 @@ class Model {
         }
     }
 
-    public function delete($id){
+    //
+    public function update($changes, $id)
+    {
+        $update = [];
+        foreach($changes as $key => $value){
+            $update[] = "$key = '$value'";
+        }
+        $update = implode(',',$update);
         
-        $response = query("DELETE FROM ".$this->database." WHERE id=$id");
+        $response = query("UPDATE ".$this->database." SET $update WHERE id = $id");
+
+        if ($response === true) {
+            return "Atualização bem-sucedida";
+        } else {
+            return "Falha na Atualização: " . $GLOBALS['db']->error;
+        }
+    }
+
+    //
+    public function delete($id)
+    {
+        
+        $response = query("DELETE FROM ".$this->database." WHERE id = $id");
 
         if ($response === true) {
             return "Exclusão bem-sucedida";

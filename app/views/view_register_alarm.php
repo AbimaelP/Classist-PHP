@@ -7,6 +7,5 @@
 </head>
 <body>
     <div><?=$title?></div>
-
 </body>
 </html>

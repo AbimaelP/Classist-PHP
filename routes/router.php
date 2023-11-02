@@ -1,5 +1,5 @@
 <?php
 require_once("config.php");
 
-route('/register-alarm','AlarmController','index');
-route('/register-equipment','EquipmentController','index');
+route('POST','/register-alarm','AlarmController','index');
+route('POST','/register-equipment','EquipmentController','create');
