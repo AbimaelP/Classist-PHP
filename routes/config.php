@@ -10,7 +10,6 @@ function route($method, $url, $controller_name, $action = '') {
             echo json_encode('Método de requisição inválido');
             exit;
         }
-    
         require_once "./app/controllers/$controller_name.php";
 
         $controller = new $controller_name();

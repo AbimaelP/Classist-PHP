@@ -5,6 +5,6 @@ decidi definir essas configurações direto no arquivo do app/config/dbconnect.p
 
 rodar projeto:
 
-1 -> php7 -S localhost:8080 -d display_errors=false -d short_open_tag=true
+1 -> php -S localhost:8080 -d display_errors=false -d short_open_tag=true
 2 -> .\run_server.bat - somente Windows
 3 -> .\run_server.sh - somente linux

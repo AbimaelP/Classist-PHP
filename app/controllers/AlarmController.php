@@ -1,33 +1,40 @@
 <?php
 require_once "./app/models/Alarm.php";
+require_once "./app/models/Equipment.php";
+require_once "./app/config/helpers.php";
 
 class AlarmController {
-    public function index(){
-        $alarm = new Alarm();
-        $alarms = $alarm->all();
-        $title = 'Lista de alarmes';
+    public function viewAlarms(){
+        $alarms = Alarm::all();
+        foreach ($alarms as &$alarm){ $alarm->equipment = Equipment::find($alarm->equipment_id,['serial_number','name']);}
+        return mountView("view_list_alarms", $alarms);
+    }
 
-        return require_once "./app/views/view_register_alarm.php";
+    public function viewAlarmRegister(){
+        $alarms = Alarm::all();
+        $equipments = Equipment::all();
+
+        return mountView("view_register_alarm");
     }
 
     public function create($response){
-        $alarm = new Alarm();
-
-        $alarms = $alarm->create([
-            'description' => 'Alarme para motor',
-            'classification' => 'Urgente',
-            'equipment_id' => '1',
-            'created_at' => '2023-11-02'
+        $alarm = Alarm::create([
+            'name' => $response['name'],
+            'description' => $response['description'],
+            'classification' => $response['classification'],
+            'equipment_id' => $response['equipment_id'],
+            'activated' => $response['activated'],
+            'created_at' => date('Y-m-d H:i:s')
         ]);
 
-        $this->index();
+        redirect('/alarms');
     }
 
     public function update($response){        
-        $this->index();
+        //$this->index();
     }
 
     public function delete($response){
-        $this->index();
+        //$this->index();
     }
 }

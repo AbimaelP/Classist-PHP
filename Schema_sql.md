@@ -26,14 +26,16 @@ CREATE TABLE IF NOT EXISTS equipments (
 
 CREATE TABLE IF NOT EXISTS alarms (
 	id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
     description TEXT,
     classification ENUM('Urgente','Emergente','Ordinário'),
     equipment_id INT NOT NULL,
     entry_date DATETIME,
     release_date DATETIME,
-    is_activated BOOL DEFAULT FALSE,
+    activated BOOL DEFAULT FALSE,
+    acted BOOL DEFAULT FALSE,
     created_at DATETIME NOT NULL,
-    FOREIGN KEY (equipment_id) REFERENCES types(id)
+    FOREIGN KEY (equipment_id) REFERENCES equipments(id)
 );
 
 CREATE TABLE IF NOT EXISTS action_logs (

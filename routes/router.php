@@ -1,5 +1,12 @@
 <?php
 require_once("config.php");
 
-route('POST','/register-alarm','AlarmController','index');
-route('POST','/register-equipment','EquipmentController','create');
+//rotas de alarmes
+route('GET','/alarms','AlarmController','viewAlarms');
+route('GET','/register-alarm','AlarmController','viewAlarmRegister');
+route('POST','/register-alarm-method','AlarmController','create');
+route('POST','/activate-alarm','AlarmController','update');
+
+//rotas de equipamentos
+route('GET','/equipments','EquipmentController','viewEquipmentRegister');
+route('POST','/register-equipment-method','EquipmentController','create');

@@ -1,0 +1,20 @@
+.navbar_content {
+    display: flex;
+    justify-content: end;
+}
+
+.navbar {
+
+}
+
+.navbar a:nth-child(2){
+    margin: 0 15px;
+}
+
+.btn {
+    text-decoration: none;
+}
+
+.btn:hover {
+
+}
