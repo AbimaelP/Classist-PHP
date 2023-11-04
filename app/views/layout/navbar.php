@@ -8,6 +8,7 @@
             <a href="/alarms" class="btn"> Lista de alarmes </a>
             <a href="/register-alarm" class="btn"> Cadastrar novo alarme</a>
             <a href="/equipments" class="btn">Lista de equipamentos</a>
+            <a href="/register-equipment" class="btn">Cadastrar novo equipamento</a>
         </div>
     </div>
 </body>

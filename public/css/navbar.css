@@ -7,8 +7,8 @@
 
 }
 
-.navbar a:nth-child(2){
-    margin: 0 15px;
+.navbar a{
+    margin-left: 15px;
 }
 
 .btn {

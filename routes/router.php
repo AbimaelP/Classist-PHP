@@ -8,5 +8,6 @@ route('POST','/register-alarm-method','AlarmController','create');
 route('POST','/activate-alarm','AlarmController','update');
 
 //rotas de equipamentos
-route('GET','/equipments','EquipmentController','viewEquipmentRegister');
+route('GET','/equipments','EquipmentController','viewEquipments');
+route('GET','/register-equipment','EquipmentController','viewEquipmentRegister');
 route('POST','/register-equipment-method','EquipmentController','create');

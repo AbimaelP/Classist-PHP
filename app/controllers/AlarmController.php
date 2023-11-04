@@ -6,7 +6,8 @@ require_once "./app/config/helpers.php";
 class AlarmController {
     public function viewAlarms(){
         $alarms = Alarm::all();
-        foreach ($alarms as &$alarm){ $alarm->equipment = Equipment::find($alarm->equipment_id,['serial_number','name']);}
+        $alarms = groupData($alarms, 'Equipment', 'equipment_id', ['serial_number','name']);
+        
         return mountView("view_list_alarms", $alarms);
     }
 

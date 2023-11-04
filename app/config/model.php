@@ -24,7 +24,7 @@ class Model {
     public static function find($id, $select = ['*'])
     {
         $select = implode(',', $select);
-
+        
         $response = mysqli_fetch_object(query("SELECT $select FROM ".static::$database." WHERE id=$id"));
 
         if($response)
@@ -32,7 +32,7 @@ class Model {
         else
             return $GLOBALS['db']->error;
     }
-
+    
     //
     public static function search($search, $select = ['*'])
     {

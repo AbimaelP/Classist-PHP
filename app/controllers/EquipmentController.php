@@ -4,6 +4,14 @@ require_once "./app/models/Type.php";
 require_once "./app/config/helpers.php";
 
 class EquipmentController {
+
+    public function viewEquipments(){
+        $equipments = Equipment::all();
+        $equipments = groupData($equipments, 'Type', 'type_id');
+
+        return mountView("view_list_equipments", $equipments);
+    }
+
     public function viewEquipmentRegister(){
         $equipments = Equipment::all();
         $types = Type::all();
