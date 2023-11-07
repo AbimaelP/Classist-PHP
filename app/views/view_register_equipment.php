@@ -8,16 +8,16 @@
     <title>Cadastrar equipamento</title>
 </head>
 <body>
-    <h2>Cadastrar equipamento</h2>
+    <h2>Cadastrar novo equipamento</h2>
 
     <form onsubmit="sendForm(event,this,'/register-equipment-method')">
-        <input type="text" name="name" placeholder="Digite o nome do equipamento">
-        <input type="text" name="serial_number" placeholder="numero de serie">
-        <select name="type_id"><?foreach($types as $type){?>
+        <input type="text" class="input_st" name="name" placeholder="Digite o nome do equipamento">
+        <input type="text" class="input_st" name="serial_number" placeholder="numero de serie">
+        <select name="type_id" class="input_st"><?foreach($properties as $type){?>
             <option value="<?=$type->id?>"><?=$type->name?></option>
         <?}?></select>
 
-        <button type="submit">enviar</button>
+        <div class="d-flex-row-end"><button type="submit" class="btn">enviar</button></div>
     </form>
 </body>
 </html>

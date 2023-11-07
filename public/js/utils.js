@@ -16,8 +16,29 @@ function sendForm(event, form, route){
     $.post(route,formDataJson).done((response) => {
         const data = JSON.parse(response);
         
-        if(data.action == 'redirect'){
+        if(data.action === 'redirect'){
             window.location.href = data.route;
+        }
+    })
+}
+
+function triggerAlarm(id_alarm){
+    $('#msg_content').removeClass('msg-success')
+    $('#msg_content').removeClass('msg-error')
+
+    $.get('/check-alarm',{id: id_alarm}).done((response) => {
+        const data = JSON.parse(response);
+        if(data === 'activeted'){
+            $.get('/dispare-alarm',{id: id_alarm}).done((response) => {
+                const data_post = JSON.parse(response)
+                $('#msg_content').text(data_post.message)
+                if(data_post.status === 200){
+                    console.log('aqui')
+                    $('#msg_content').addClass('msg-success')
+                } else {
+                    $('#msg_content').removeClass('msg-error')
+                }
+            })
         }
     })
 }

@@ -12,10 +12,34 @@ class AlarmController {
     }
 
     public function viewAlarmRegister(){
-        $alarms = Alarm::all();
         $equipments = Equipment::all();
 
-        return mountView("view_register_alarm");
+        return mountView("view_register_alarm", $equipments);
+    }
+
+    public function viewsAlarmsTrigers(){
+        $alarms = Alarm::all();
+        $alarms = groupData($alarms, 'Equipment', 'equipment_id', ['serial_number','name']);
+        
+        return mountView("views_alarms_triggers", $alarms);
+    }
+
+    public function check($response){
+        $alarms = Alarm::find($response['id'],['activated']);
+
+        if($alarms->activated)
+        {
+            echo json_encode('activeted');
+        }else
+        {
+            echo json_encode('no-activeted');
+        }
+    }
+
+    public function dispare($response){
+        $alarm = Alarm::update(['acted' => 'acted + 1'], $response['id'], $type = 'INT');
+
+        echo json_encode($alarm);
     }
 
     public function create($response){

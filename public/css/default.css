@@ -1,8 +1,98 @@
+div, h2 {
+    color: #4F4F4F;
+    font-family: 'Roboto';
+}
+
+h2 {
+    font-weight: normal;
+}
+
 textarea {
     resize: none;
+}
+
+html {
+    background-color: #FDEEFE;
+}
+
+body {
+    margin-left: 75px;
 }
 
 .d-flex-column {
     display: flex;
     flex-direction: column;
+}
+.d-flex-row-end {
+    display: flex;
+    justify-content: end;
+}
+.d-flex-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.d-flex-align-y {
+    display: flex;
+    align-items: center;
+}
+
+input.input_st {
+    padding-left: 5px !important;
+}
+.input_st {
+    height: 36px;
+    border: 0.5px solid #606060;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 5px;
+    color: #606060;
+}
+
+.btn {
+    cursor: pointer;
+    border: none;
+    background-color: #AB94EC;
+    color: #ffff;
+    padding: 7px 20px;
+    border-radius: 7px;
+}
+
+.btn:hover {
+    background-color: #7159b3;
+}
+
+.msg_content {
+    position: fixed;
+    top: 10px;
+    right: 15px;
+    padding: 10px 35px;
+    border-radius: 8px;
+}
+
+@keyframes msg_content {
+    0% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.msg-success {
+    background-color: rgb(89, 196, 103);
+    color: rgb(237, 255, 234);
+    animation: msg_content 2s linear forwards;
+}
+
+.msg-error {
+    background-color: rgb(196 89 89);
+    color: rgb(255 234 234);
+    animation: msg_content 2s linear forwards;
 }

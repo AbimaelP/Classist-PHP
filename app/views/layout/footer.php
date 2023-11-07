@@ -3,7 +3,7 @@
 <body>
     <div class="footer_content">
         <div class="footer">
-            rodapé content
+           <!-- rodapé content-->
         </div>
     </div>
 </body>

@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="../../public/css/default.css">
     <link rel="stylesheet" href="../../public/css/list_alarms.css">
 
-    <title>Lista de alarmes</title>
+    <title>Lista de equipamentos</title>
 </head>
 <body>
-    <h2>Lista de alarmes</h2>
+    <h2>Lista de equipamentos</h2>
 
     <?foreach($properties as $equipment){?>
         <div class="d-flex-column content_alarm">

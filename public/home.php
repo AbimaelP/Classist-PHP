@@ -6,6 +6,7 @@
     <title>Home</title>
 </head>
 <body>
+    <?include_once("./app/views/layout/navbar.php")?>
     Home
 </body>
 </html>

@@ -13,10 +13,9 @@ class EquipmentController {
     }
 
     public function viewEquipmentRegister(){
-        $equipments = Equipment::all();
         $types = Type::all();
 
-        return mountView("view_register_equipment");
+        return mountView("view_register_equipment", $types);
     }
 
     public function create($response){

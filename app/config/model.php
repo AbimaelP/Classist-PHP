@@ -68,20 +68,25 @@ class Model {
     }
 
     //
-    public static function update($changes, $id)
+    public static function update($changes, $id, $type = '')
     {
         $update = [];
+
         foreach($changes as $key => $value){
-            $update[] = "$key = '$value'";
+            if($type === 'INT')
+                $update[] = "$key = $value";
+            else
+                $update[] = "$key = '$value'";
         }
+
         $update = implode(',',$update);
         
         $response = query("UPDATE ".static::$database." SET $update WHERE id = $id");
 
         if ($response === true) {
-            return "Atualização bem-sucedida";
+            return ['message' =>"Atualização bem-sucedida", 'status' => 200];
         } else {
-            return "Falha na Atualização: " . $GLOBALS['db']->error;
+            return ['message' =>"Falha na Atualização: " . $GLOBALS['db']->error, 'status' => 401];
         }
     }
 

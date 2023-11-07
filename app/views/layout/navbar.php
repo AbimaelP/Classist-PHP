@@ -1,14 +1,19 @@
 <html>
 <head>
     <link rel="stylesheet" href="../../../public/css/navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="navbar_content">
         <div class="navbar">
-            <a href="/alarms" class="btn"> Lista de alarmes </a>
-            <a href="/register-alarm" class="btn"> Cadastrar novo alarme</a>
-            <a href="/equipments" class="btn">Lista de equipamentos</a>
-            <a href="/register-equipment" class="btn">Cadastrar novo equipamento</a>
+            <div><a href="/alarms" title="Lista de alarmes"><i class="fa fa-list"></i> <span>Alarmes</span></a></div>
+            <div><a href="/equipments" title="Lista de equipamentos"><i class="fa fa-gears"></i> <span>Equipamentos</span></a></div>
+            <div><a href="/register-alarm" title="Cadastrar novo alarme"><i class="fa fa-bell"></i> <span>Criar alarme</span></a></div>
+            <div><a href="/register-equipment" title="Cadastrar novo equipamento"><i class="fa fa-gear"></i> <span>Cadastrar equipamento</span></a></div>
+            <div><a href="/disparar-alarmes" title="Gerenciar alarmes"><i class="fa fa-bell"></i> <span>Disparar alarme</span></a></div>
         </div>
     </div>
 </body>
