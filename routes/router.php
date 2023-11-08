@@ -5,13 +5,14 @@ require_once("config.php");
 route('GET','/alarms','AlarmController','viewAlarms');
 route('GET','/register-alarm','AlarmController','viewAlarmRegister');
 route('GET','/disparar-alarmes','AlarmController','viewsAlarmsTrigers');
+route('GET','/actuated-alarms','AlarmController', 'viewsActuatedAlarms');
 
 //alarmes métodos
+route('GET','/actuated-alarms-filtred','AlarmController','viewsActuatedAlarmsWithFilters');
 route('POST','/register-alarm-method','AlarmController','create');
 route('GET','/check-alarm','AlarmController','check');
 route('GET','/dispare-alarm','AlarmController','dispare');
-route('POST','/activate-alarm','AlarmController','update');
-
+route('GET','/activate-alarm','AlarmController','activate');
 
 //-------------------------------------------------------------------------------------------------------
 

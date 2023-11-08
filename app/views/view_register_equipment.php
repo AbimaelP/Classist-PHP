@@ -17,6 +17,8 @@
             <option value="<?=$type->id?>"><?=$type->name?></option>
         <?}?></select>
 
+        <textarea name="description" cols="30" rows="5" placeholder="Insira a descrição do equipamento" style="width: 100%;"></textarea>
+
         <div class="d-flex-row-end"><button type="submit" class="btn">enviar</button></div>
     </form>
 </body>

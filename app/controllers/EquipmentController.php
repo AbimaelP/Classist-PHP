@@ -24,6 +24,7 @@ class EquipmentController {
             'name' => $response['name'],
             'serial_number' => $response['serial_number'],
             'type_id' => $response['type_id'],
+            'description' => $response['description'],
             'created_at' => date('Y-m-d H:i:s')
         ]);;
         

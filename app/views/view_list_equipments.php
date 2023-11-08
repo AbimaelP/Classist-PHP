@@ -14,12 +14,12 @@
 
     <?foreach($properties as $equipment){?>
         <div class="d-flex-column content_alarm">
-            <div><?=$equipment->name?></div>
-            <div><?=$equipment->serial_number?></div>
+            <div>Nome: <?=$equipment->name?></div>
+            <div>Número seríe: <?=$equipment->serial_number?></div>
             <div>
-                <span><?=$equipment->data_join->name?></span> <span><?=$equipment->data_join->id?></span>
+                <span>Tipo: <?=$equipment->data_join->name?></span> <span><?=$equipment->data_join->id?></span>
             </div>
-            <div><?=$equipment->created_at?></div>
+            <div>Criado em: <?=$equipment->created_at?></div>
         </div>
     <?}?>
 

@@ -14,6 +14,7 @@
             <div><a href="/register-alarm" title="Cadastrar novo alarme"><i class="fa fa-bell"></i> <span>Criar alarme</span></a></div>
             <div><a href="/register-equipment" title="Cadastrar novo equipamento"><i class="fa fa-gear"></i> <span>Cadastrar equipamento</span></a></div>
             <div><a href="/disparar-alarmes" title="Gerenciar alarmes"><i class="fa fa-bell"></i> <span>Disparar alarme</span></a></div>
+            <div><a href="/actuated-alarms" title="Ver alarmes atuados"><i class="fa fa-bell"></i> <span>Alarmes atuados</span></a></div>
         </div>
     </div>
 </body>

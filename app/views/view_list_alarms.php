@@ -14,13 +14,13 @@
 
     <?foreach($properties as $alarm){?>
         <div class="d-flex-column content_alarm">
-            <div><?=$alarm->name?></div>
-            <div><?=$alarm->description?></div>
-            <div><?=$alarm->classification?></div>
+            <div>Nome do alarme: <?=$alarm->name?></div>
+            <div>Descrição: <?=$alarm->description?></div>
+            <div>Classificação: <?=$alarm->classification?></div>
             <div>
-                <span><?=$alarm->data_join->name?></span> <span><?=$alarm->data_join->serial_number?></span>
+                <span>Equipamento: <?=$alarm->data_join->name?></span> <span><?=$alarm->data_join->serial_number?></span>
             </div>
-            <div><?=$alarm->created_at?></div>
+            <div>Criado em: <?=$alarm->created_at?></div>
         </div>
     <?}?>
 

@@ -34,13 +34,16 @@ class Model {
     }
     
     //
-    public static function search($search, $select = ['*'])
+    public static function search($search, $orderBy = '', $select = ['*'])
     {
         $key = array_keys($search)[0];
-        $value = '"%' . implode('%', array_values($search)) .'%"';
+        $value = "'%" . implode('%', array_values($search)) ."%'";
         $select = implode(',', $select);
 
-        $qr = query("SELECT $select FROM ".static::$database." WHERE $key LIKE $value");
+        if($orderBy)
+            $orderBy = "ORDER BY $orderBy";
+
+        $qr = query("SELECT $select FROM ".static::$database." WHERE $key LIKE $value $orderBy");
 
         $response = [];
         while($obj = mysqli_fetch_object($qr)){
