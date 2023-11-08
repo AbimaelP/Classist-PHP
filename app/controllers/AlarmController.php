@@ -2,7 +2,7 @@
 require_once "./app/models/Alarm.php";
 require_once "./app/models/Equipment.php";
 require_once "./app/config/helpers.php";
-
+include_once('./phpmailer/class.phpmailer.php');
 class AlarmController {
     public function viewAlarms(){
         $alarms = Alarm::all();
@@ -16,8 +16,6 @@ class AlarmController {
 
         return mountView("view_register_alarm", $equipments);
     }
-
-
 
     public function viewsAlarmsTrigers(){
         $alarms = Alarm::all();
@@ -34,7 +32,7 @@ class AlarmController {
     }
 
     public function viewsActuatedAlarmsWithFilters($response){
-        $alarms = Alarm::search(['description' => $response['search']], $response['order_by']);
+        $alarms = Alarm::search(['description' => $response['search']], $response['order_by'], ['*']);
         $alarms = groupData($alarms, 'Equipment', 'equipment_id', ['serial_number','description']);
 
         return mountView("view_alarms_actuateds", $alarms, ['search' => $response['search'], 'orderby' => $response['order_by']]);
@@ -53,9 +51,30 @@ class AlarmController {
     }
 
     public function dispare($response){
-        $alarm = Alarm::update(['acted' => 'acted + 1'], $response['id'], $type = 'INT');
+        $alarm = Alarm::update(['acted' => ['acted + 1','INT'], 'release_date' => [date('Y-m-d H:i:s'), 'STRING']], $response['id']);
+     
+        if($alarm['status'] == 200 && $response['classification'] == 'Urgente')
+            $this->sendMail();
 
         echo json_encode($alarm);
+    }
+
+    public function sendMail(){
+        $mail = new PHPMailer();
+        $mail->IsSMTP();
+        $mail->SMTPAuth   = true; 
+        $mail->SMTPSecure = "ssl"; 
+        $mail->Host       = "mail.smtp2go.com";
+        $mail->Username   = "rede_news3";
+        $mail->Password   = "zFSDAcxvzxakSADF243129128APOSPQQXX";
+
+        $mail->From = 'abimael.stack@hotmail.com';
+        $mail->FromName = 'abimael.stack@hotmail.com';
+        $mail->Subject = ('nenhum assunto');
+        $mail->MsgHTML(('<div>Alerta de classificação urgente disparado</div>'));
+        $mail->AddAddress('abcd@abc.com.br','abcd@abc.com.br');
+
+        $mail->Send();
     }
 
     public function create($response){
@@ -65,6 +84,7 @@ class AlarmController {
             'classification' => $response['classification'],
             'equipment_id' => $response['equipment_id'],
             'activated' => $response['activated'],
+            'entry_date' => date('Y-m-d H:i:s'),
             'created_at' => date('Y-m-d H:i:s')
         ]);
 
@@ -72,7 +92,7 @@ class AlarmController {
     }
 
     public function activate($response){        
-        $alarm = Alarm::update(['activated' => $response['activate']], $response['id'], $type = 'INT');
+        $alarm = Alarm::update(['activated' => [$response['activate'], 'INT']], $response['id']);
 
         redirect('/disparar-alarmes');
     }

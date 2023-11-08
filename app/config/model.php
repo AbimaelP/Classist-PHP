@@ -4,11 +4,20 @@ require_once("query.php");
 class Model {
     protected static $database;
 
-    public static function all($select = ['*'])
+    public static function all($select = ['*'], $additional_query = '')
     {
         $select = implode(',', $select);
 
-        $qr = query("SELECT $select FROM ".static::$database."");
+        if(static::$database == 'alarms'){
+            $qr = query("SELECT 
+            a.*,
+            CASE WHEN d.ranking <= 3 THEN 'rank' ELSE '' END AS referencia FROM alarms a
+            JOIN (SELECT id, DENSE_RANK() OVER (ORDER BY acted DESC) AS ranking FROM alarms ) AS d ON a.id = d.id
+            WHERE 0=0 AND a.acted > 0
+            ORDER BY a.name");
+        }else {
+            $qr = query("SELECT $select FROM ".static::$database." WHERE 0=0 $additional_query");
+        }
 
         $response = [];
         while($obj = mysqli_fetch_object($qr)){
@@ -43,7 +52,15 @@ class Model {
         if($orderBy)
             $orderBy = "ORDER BY $orderBy";
 
-        $qr = query("SELECT $select FROM ".static::$database." WHERE $key LIKE $value $orderBy");
+        if(static::$database == 'alarms'){
+            $qr = query("SELECT 
+            a.*,
+            CASE WHEN d.ranking <= 3 THEN 'rank' ELSE '' END AS referencia FROM alarms a
+            JOIN (SELECT id, DENSE_RANK() OVER (ORDER BY acted DESC) AS ranking FROM alarms ) AS d ON a.id = d.id
+            WHERE $key LIKE $value AND a.acted > 0 $orderBy");
+        }else{
+            $qr = query("SELECT $select FROM ".static::$database." WHERE $key LIKE $value $orderBy");
+        }
 
         $response = [];
         while($obj = mysqli_fetch_object($qr)){
@@ -71,19 +88,20 @@ class Model {
     }
 
     //
-    public static function update($changes, $id, $type = '')
+    public static function update($changes, $id)
     {
         $update = [];
+        
 
         foreach($changes as $key => $value){
-            if($type === 'INT')
-                $update[] = "$key = $value";
+            if($value[1] === 'INT')
+                $update[] = "$key = ".$value[0]."";
             else
-                $update[] = "$key = '$value'";
+                $update[] = "$key = '".$value[0]."'";
         }
 
-        $update = implode(',',$update);
-        
+        $update = implode(', ',$update);
+
         $response = query("UPDATE ".static::$database." SET $update WHERE id = $id");
 
         if ($response === true) {

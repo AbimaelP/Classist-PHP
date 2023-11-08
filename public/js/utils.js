@@ -22,20 +22,21 @@ function sendForm(event, form, route){
     })
 }
 
-function triggerAlarm(id_alarm){
+function triggerAlarm(id_alarm, classification_alarm){
     $('#msg_content').removeClass('msg-success')
     $('#msg_content').removeClass('msg-error')
+    $('#msg_content').text('')
 
     $.get('/check-alarm',{id: id_alarm}).done((response) => {
         const data = JSON.parse(response);
         if(data === 'activeted'){
-            $.get('/dispare-alarm',{id: id_alarm}).done((response) => {
+            $.get('/dispare-alarm',{id: id_alarm, classification: classification_alarm}).done((response) => {
                 const data_post = JSON.parse(response)
 
+                console.log(data_post)
                 $('#msg_content').text(data_post.message)
 
                 if(data_post.status === 200){
-                    console.log('aqui')
                     $('#msg_content').addClass('msg-success')
                 } else {
                     $('#msg_content').removeClass('msg-error')

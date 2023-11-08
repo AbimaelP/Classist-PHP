@@ -33,11 +33,6 @@ class EquipmentController {
         }
     }
 
-    public function update($response){
-        
-        return require_once "./app/views/view_register_equipment.php";
-    }
-
     public function delete($response){
         
         return require_once "./app/views/view_register_equipment.php";

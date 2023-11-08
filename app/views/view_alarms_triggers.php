@@ -41,7 +41,7 @@
                     <input type="radio" onclick="activateAlarm(this, <?=$alarm->id?>)" name="activated_<?=$alarm->id?>" id="activ_on<?=$alarm->id?>" value="1" <?=$alarm->activated == 1 ? 'checked': ''?>> <label for="activ_on<?=$alarm->id?>">Ativar</label>
                     <input type="radio" onclick="activateAlarm(this, <?=$alarm->id?>)" name="activated_<?=$alarm->id?>" id="activ_off<?=$alarm->id?>" value="0" <?=$alarm->activated == 0 ? 'checked': ''?>> <label for="activ_off<?=$alarm->id?>">Desativar</label>
                 </div>
-                <button class="btn" onclick="triggerAlarm('<?=$alarm->id?>')" <?=$alarm->activated == 0 ? 'disabled' : ''?>>Disparar</button>
+                <button class="btn" onclick="triggerAlarm('<?=$alarm->id?>','<?=$alarm->classification?>')" <?=$alarm->activated == 0 ? 'disabled' : ''?>>Disparar</button>
             </div>
         </div>
     <?}?>

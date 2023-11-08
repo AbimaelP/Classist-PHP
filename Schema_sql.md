@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS alarms (
     entry_date DATETIME,
     release_date DATETIME,
     activated BOOL DEFAULT FALSE,
-    acted BOOL DEFAULT FALSE,
+    acted INT DEFAULT 0,
     created_at DATETIME NOT NULL,
     FOREIGN KEY (equipment_id) REFERENCES equipments(id)
 );

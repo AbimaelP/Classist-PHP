@@ -30,9 +30,12 @@
                 <div>Status: <?=$alarm->activated? 'Ativado': 'Desativado'?></div>
                 <div>Descrição do alarme: <?=$alarm->description?></div>
                 <div>Descrição do equipamento: <?=$alarm->data_join->description?></div>
+                <div>Data de entrada: <?=$alarm->entry_date?></div>
+                <div>Data de saida: <?=$alarm->release_date?></div>
             </div>
             <div class="d-flex-between d-flex-align-y" style="width: 15%;">
-                <?=$alarm->acted == 1 ? 'Atuado '.$alarm->acted.' vez': 'Atuado '.$alarm->acted.' vezes'?>
+                <div><?=$alarm->acted == 1 ? 'Atuado '.$alarm->acted.' vez': 'Atuado '.$alarm->acted.' vezes'?></div>
+                <?=$alarm->referencia == 'rank' ? '<div class="star_content"><i class="fa fa-star" title="Mais atuado"></i></div>' : ''?>
             </div>
         </div>
     <?}?>
