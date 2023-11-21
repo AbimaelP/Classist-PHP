@@ -4,11 +4,11 @@ require_once("query.php");
 class Model {
     protected static $database;
 
-    public static function all($select = ['*'], $additional_query = '')
+    public static function all($select = ['*'], $additional_query = '', $isrank = true)
     {
         $select = implode(',', $select);
 
-        if(static::$database == 'alarms'){
+        if(static::$database == 'alarms' && $isrank){
             $qr = query("SELECT 
             a.*,
             CASE WHEN d.ranking <= 3 THEN 'rank' ELSE '' END AS referencia FROM alarms a

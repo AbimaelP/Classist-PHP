@@ -5,7 +5,8 @@ require_once "./app/config/helpers.php";
 include_once('./phpmailer/class.phpmailer.php');
 class AlarmController {
     public function viewAlarms(){
-        $alarms = Alarm::all();
+        $alarms = Alarm::all(['*'],'',false);
+
         $alarms = groupData($alarms, 'Equipment', 'equipment_id', ['serial_number','name']);
         
         return mountView("view_list_alarms", $alarms);
@@ -18,7 +19,7 @@ class AlarmController {
     }
 
     public function viewsAlarmsTrigers(){
-        $alarms = Alarm::all();
+        $alarms = Alarm::all(['*'],'',false);
         $alarms = groupData($alarms, 'Equipment', 'equipment_id', ['serial_number','name']);
         
         return mountView("view_alarms_triggers", $alarms);
